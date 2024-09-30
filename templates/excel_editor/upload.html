@@ -5,7 +5,10 @@
 <h1>Excel Upload Page</h1>
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Upload</button>
+    <div class="mb-3">
+        <label for="excel_file" class="form-label">{{ form.excel_file.label }}</label>
+        {{ form.excel_file }}
+    </div>
+    <button type="submit" class="btn btn-primary">Upload</button>
 </form>
 {% endblock %}

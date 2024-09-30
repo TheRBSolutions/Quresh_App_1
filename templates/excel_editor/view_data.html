@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<h2>Saved Excel Data</h2>
+
+<p><strong>Excel Data ID:</strong> {{ excel_data_id }}</p>
+<p><strong>Created At:</strong> {{ created_at }}</p>
+<p><strong>Number of Images:</strong> {{ image_count }}</p>
+
+<table id="excel-data">
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Image</th>
+            <th>Image Size</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in image_data %}
+        <tr>
+            <td>{{ item.number }}</td>
+            <td><img src="data:image/png;base64,{{ item.image }}" alt="Image {{ item.number }}" style="max-width: 200px;"></td>
+            <td>{{ item.size }} bytes</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{% url 'excel_editor:upload_excel' %}">Upload New Excel</a>
+{% endblock %}
