@@ -3,17 +3,14 @@ version: '3'
 services:
   web:
     build: .
-    command: gunicorn --bind 0.0.0.0:8000 Quresh_App.wsgi:application
+    command: sh -c "python manage.py wait_for_db && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/app
-      - static_volume:/app/static
-      - media_volume:/app/media
-      - excel_to_db_volume:/app/media/excel_to_db
-      - excel_to_pdf_volume:/app/media/excel_to_pdf
     ports:
       - "8000:8000"
     environment:
       - DJANGO_SETTINGS_MODULE=Quresh_App.settings
+      - USE_DOCKER=True
       - MONGO_DATABASE_NAME=quresh_db
       - MONGO_HOST=db
       - MONGO_PORT=27017
@@ -25,7 +22,7 @@ services:
     volumes:
       - mongodb_data:/data/db
     ports:
-      - "27018:27017"  # Changed host port to 27018
+      - "27017:27017"
 
 volumes:
   static_volume:

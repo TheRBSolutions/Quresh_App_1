@@ -13,10 +13,8 @@
   </head>
   <body>
     <div class="container d-flex justify-content-around p-5">
-      <a href="{% url 'excel_to_db:index' %}">
-        <button class="btn btn-lg bg-danger text-light">Excel to Database</button>
-      </a>
-      <!-- Other buttons... -->
+      <p>Debug URL: {% url 'excel_to_db:index' %}</p>
+      <a href="{% url 'excel_to_db:index' %}" class="btn btn-lg bg-danger text-light">Excel to Database</a>
     </div>
   </body>
 </html>

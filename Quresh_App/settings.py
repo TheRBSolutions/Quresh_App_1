@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'djongo',
     'excel_to_db',
     'excel_to_pdf',
+    'excel_editor',
 ]
 
 MIDDLEWARE = [
@@ -78,14 +79,33 @@ WSGI_APPLICATION = 'Quresh_App.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'djongo',
-        'NAME': os.environ.get('MONGO_DATABASE_NAME', 'quresh_db'),
-        'HOST': os.environ.get('MONGO_HOST', 'db'),
-        'PORT': int(os.environ.get('MONGO_PORT', 27017)),
+# Use an environment variable to determine if we're running in Docker
+USE_DOCKER = os.environ.get('USE_DOCKER', 'False') == 'True'
+
+if USE_DOCKER:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'djongo',
+            'NAME': os.environ.get('MONGO_DATABASE_NAME', 'quresh_db'),
+            'CLIENT': {
+                'host': os.environ.get('MONGO_HOST', 'db'),
+                'port': int(os.environ.get('MONGO_PORT', 27017)),
+                'username': os.environ.get('MONGO_USERNAME', ''),
+                'password': os.environ.get('MONGO_PASSWORD', ''),
+            }
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'djongo',
+            'NAME': 'quresh_db',
+            'CLIENT': {
+                'host': 'localhost',
+                'port': 27017,
+            }
+        }
+    }
 
 
 # Password validation
