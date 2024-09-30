@@ -1,0 +1,35 @@
+# This file specifies files and directories that should be excluded from the Docker build context.
+# It is used to reduce the size of the image and improve build performance.
+
+# Ignore the virtual environment folder
+venv/
+
+# Ignore local development settings
+local_settings.py
+
+# Ignore compiled Python files
+*.pyc
+
+# Ignore test files
+tests/
+
+# Ignore Django admin media
+admin/media/
+
+# Ignore Django migrations
+migrations/
+
+# Ignore database files
+db.sqlite3
+
+# Ignore IDE-related files
+.vscode/
+.idea/
+
+# Ignore package-lock.json (used by npm)
+package-lock.json
+
+# Ignore node_modules folder (used by npm)
+node_modules/
+
+# Include any other files or directories you want to exclude

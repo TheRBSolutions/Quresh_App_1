@@ -1,0 +1,22 @@
+asgiref==3.8.1
+chardet==5.2.0
+dataclasses==0.6
+Django==3.2.23  # Downgrading Django to a version compatible with Djongo
+djongo==1.3.6
+dnspython==2.6.1
+et-xmlfile==1.1.0
+numpy==1.26.4
+openpyxl==3.1.2
+openpyxl_image_loader==1.0.5 # Added the missing package with a specific version
+pandas==2.2.1
+pymongo==3.12.3
+python-dateutil==2.9.0.post0
+pytz==2024.1
+six==1.16.0
+sqlparse==0.2.4  # Specific version required by Djongo
+tzdata==2024.1
+gunicorn==21.2.0
+reportlab
+django-stubs
+pandas-stubs
+types-openpyxl 
